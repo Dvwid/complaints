@@ -1,0 +1,22 @@
+<div class="sub-navbar" (click)="drawer.toggle(); showNotifications = !showNotifications">
+  <img src="assets/notification.png">
+  <button type="button" mat-button color="white">
+    {{!showNotifications ? "Show notifications" : "Hide notifications"}}
+  </button>
+</div>
+
+<mat-drawer-container class="complaints-container" autosize>
+  <mat-drawer #drawer class="complaints-sidenav" mode="side">
+    <p>Auto-resizing sidenav</p>
+    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+    <button (click)="showFiller = !showFiller" mat-raised-button>
+      Toggle extra text
+    </button>
+  </mat-drawer>
+
+  <div class="complaints-sidenav-content">
+    <app-data-table></app-data-table>
+  </div>
+
+
+</mat-drawer-container>
