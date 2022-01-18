@@ -15,6 +15,7 @@ import { FormsModule } from "@angular/forms";
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from "@angular/material/sort";
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { MatIconModule } from '@angular/material/icon';
     FormsModule,
     MatInputModule,
     MatSortModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ]
 })
 export class ComplaintsModule { }

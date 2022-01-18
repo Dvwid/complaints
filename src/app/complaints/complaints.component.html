@@ -7,11 +7,14 @@
 
 <mat-drawer-container class="complaints-container" autosize>
   <mat-drawer #drawer class="complaints-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
+    <mat-card>
+      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
+      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
+      <mat-card-actions align="end">
+        <button mat-button>Show</button>
+        <button mat-button>Delete</button>
+      </mat-card-actions>
+    </mat-card>
   </mat-drawer>
 
   <div class="complaints-sidenav-content">
