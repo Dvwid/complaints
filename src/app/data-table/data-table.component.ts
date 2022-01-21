@@ -2,7 +2,8 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort} from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
-
+import { ELEMENT_DATA } from "../PeriodicElement";
+import { PeriodicElement } from "../PeriodicElement";
 
 
 @Component({
@@ -10,15 +11,24 @@ import { MatPaginator } from "@angular/material/paginator";
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss']
 })
-export class DataTableComponent implements AfterViewInit {
-  displayedColumns: string[] = ['id', 'product.name', 'product.sku', 'client.name','client.email','client.phone', 'date', 'done'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+export class DataTableComponent implements AfterViewInit, OnInit {
+  displayedColumns: string[] = [];
 
+  dataSource = new MatTableDataSource<PeriodicElement>([]);
   filteredValue:string = "";
+
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor() { }
 
+  ngOnInit(): void {
+    if(window.innerWidth < 1024){
+      this.displayedColumns = ['id', 'product.sku', 'client.name', 'done'];
+    } else {
+      this.displayedColumns = ['id', 'product.name', 'product.sku', 'client.name','client.email','client.phone', 'date', 'done'];
+    };
+    this.dataSource = new MatTableDataSource(ELEMENT_DATA)
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.sortingDataAccessor = (item,property) => {
@@ -55,43 +65,7 @@ export class DataTableComponent implements AfterViewInit {
   }
 }
 
-export interface PeriodicElement {
-  id: number;
-  product: Product;
-  client: Client;
-  date: string;
-  done: boolean;
-}
-
-export interface Product {
-  name: string;
-  sku: string;
-}
-export interface Client {
-  name: string;
-  email: string;
-  phone: string;
-  adress: Adress;
-}
-
-export interface Adress {
-  zip: string;
-  city: string;
-  adress: string;
-}
 
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {id: 1, client: {name:"Elżbieta", email: "elzb@example.com", phone: "515284123", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "hammer", sku: "23152"}, date: "2021-05-01", done: true},
-  {id: 2, client: {name:"Fijak", email: "fijak@example.com", phone: "681544224", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "driller", sku: "53152"}, date: "2021-05-02", done: true},
-  {id: 3, client: {name:"Cecylia", email: "cecylia@example.com", phone: "788421471", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "grinder", sku: "23152"}, date: "2021-05-03", done: false},
-  {id: 4, client: {name:"Dawcio Hutyra", email: "dawcio@example.com", phone: "888985414", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "sander", sku: "43152"}, date: "2021-05-01", done: true},
-  {id: 5, client: {name:"Andrzej", email: "andrzej@example.com", phone: "937124782", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "bar", sku: "23152"}, date: "2021-05-05", done: true},
-  {id: 6, client: {name:"Barbara", email: "barbara@example.com", phone: "515284123", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "axe", sku: "23212"}, date: "2021-05-01", done: true},
-  {id: 7, client: {name:"Elżbieta", email: "elzb@example.com", phone: "515284123", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "hammer", sku: "23152"}, date: "2021-05-01", done: false},
-  {id: 8, client: {name:"Fijak", email: "fijak@example.com", phone: "681544224", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "driller", sku: "53152"}, date: "2021-05-02", done: false},
-  {id: 9, client: {name:"Cecylia", email: "cecylia@example.com", phone: "788421471", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "grinder", sku: "23152"}, date: "2021-05-03", done: false},
-  {id: 10, client: {name:"Dawcio", email: "dawcio@example.com", phone: "888985414", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "sander", sku: "43152"}, date: "2021-05-01", done: true},
-  {id: 11, client: {name:"Andrzej", email: "andrzej@example.com", phone: "937124782", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "bar", sku: "23152"}, date: "2021-05-05", done: true},
-  {id: 12, client: {name:"Barbara", email: "barbara@example.com", phone: "515284123", adress: {zip: "34300", city:"Paradise", adress:"Brooklyn 34"}}, product: {name: "axe", sku: "23212"}, date: "2021-05-01", done: false},
-];
+
+

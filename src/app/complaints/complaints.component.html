@@ -5,8 +5,18 @@
   </button>
 </div>
 
-<mat-drawer-container class="complaints-container" autosize>
+<mat-drawer-container  autosize>
   <mat-drawer #drawer class="complaints-sidenav" mode="side">
+
+  </mat-drawer>
+
+  <div class="complaints-sidenav-content">
+
+  </div>
+</mat-drawer-container>
+
+<div class="complaints-container">
+  <div class="complaints-notifications" [ngClass]="showNotifications ? 'active' : ''">
     <mat-card>
       <mat-card-title>1. Dawcio Hutyra</mat-card-title>
       <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
@@ -15,11 +25,60 @@
         <button mat-button>Delete</button>
       </mat-card-actions>
     </mat-card>
-  </mat-drawer>
+    <mat-card>
+      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
+      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
+      <mat-card-actions align="end">
+        <button mat-button>Show</button>
+        <button mat-button>Delete</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
+      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
+      <mat-card-actions align="end">
+        <button mat-button>Show</button>
+        <button mat-button>Delete</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
+      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
+      <mat-card-actions align="end">
+        <button mat-button>Show</button>
+        <button mat-button>Delete</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
+      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
+      <mat-card-actions align="end">
+        <button mat-button>Show</button>
+        <button mat-button>Delete</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
+      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
+      <mat-card-actions align="end">
+        <button mat-button>Show</button>
+        <button mat-button>Delete</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card>
+      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
+      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
+      <mat-card-actions align="end">
+        <button mat-button>Show</button>
+        <button mat-button>Delete</button>
+      </mat-card-actions>
+    </mat-card>
 
-  <div class="complaints-sidenav-content">
+
+
+  </div>
+  <div class="complaints-content" [ngClass]="showNotifications ? 'active' : ''">
     <app-data-table></app-data-table>
   </div>
 
-
-</mat-drawer-container>
+</div>

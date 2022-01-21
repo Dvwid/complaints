@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from "@angular/material/sort";
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatSortModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule
   ]
 })
 export class ComplaintsModule { }
