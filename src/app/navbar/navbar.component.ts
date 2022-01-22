@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  links = ['Home', 'Complaints', 'Third'];
+  links = ['Home', 'Complaints', 'Login'];
   activeLink = this.links[0];
 
   addLink() {

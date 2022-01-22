@@ -28,4 +28,10 @@
 }
 table {
   width: 95%;
+  & td.done {
+    color: white;
+  }
+  & td.in-progress {
+    color: #66bb6a;
+  }
 }

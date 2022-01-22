@@ -54,7 +54,7 @@
     </ng-container>
     <ng-container matColumnDef="done">
       <th mat-header-cell mat-sort-header  *matHeaderCellDef> Status </th>
-      <td mat-cell *matCellDef="let element"> {{element.done === true ? 'Done' : 'In progress'}} </td>
+      <td mat-cell *matCellDef="let element" [ngClass]="element.done ? 'done' : 'in-progress'"> {{element.done ? 'Done' : 'In progress'}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
