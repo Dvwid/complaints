@@ -1,5 +1,5 @@
 <div class="sub-navbar" (click)="drawer.toggle(); showNotifications = !showNotifications">
-  <img src="assets/notification.png">
+  <img src="assets/notification.png" alt="notifications">
   <button type="button" mat-button color="white">
     {{!showNotifications ? "Show notifications" : "Hide notifications"}}
   </button>
@@ -7,18 +7,15 @@
 
 <mat-drawer-container  autosize>
   <mat-drawer #drawer class="complaints-sidenav" mode="side">
-
   </mat-drawer>
-
   <div class="complaints-sidenav-content">
-
   </div>
 </mat-drawer-container>
 
 <div class="complaints-container">
   <div class="complaints-notifications" [ngClass]="showNotifications ? 'active' : ''">
     <mat-card>
-      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
+      <mat-card-title>1. John Doe</mat-card-title>
       <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
       <mat-card-actions align="end">
         <button mat-button>Show</button>
@@ -26,47 +23,7 @@
       </mat-card-actions>
     </mat-card>
     <mat-card>
-      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
-      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
-      <mat-card-actions align="end">
-        <button mat-button>Show</button>
-        <button mat-button>Delete</button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-card>
-      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
-      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
-      <mat-card-actions align="end">
-        <button mat-button>Show</button>
-        <button mat-button>Delete</button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-card>
-      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
-      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
-      <mat-card-actions align="end">
-        <button mat-button>Show</button>
-        <button mat-button>Delete</button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-card>
-      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
-      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
-      <mat-card-actions align="end">
-        <button mat-button>Show</button>
-        <button mat-button>Delete</button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-card>
-      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
-      <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
-      <mat-card-actions align="end">
-        <button mat-button>Show</button>
-        <button mat-button>Delete</button>
-      </mat-card-actions>
-    </mat-card>
-    <mat-card>
-      <mat-card-title>1. Dawcio Hutyra</mat-card-title>
+      <mat-card-title>2. Sam Smith</mat-card-title>
       <mat-card-subtitle>The time to consider the complaint is expired!</mat-card-subtitle>
       <mat-card-actions align="end">
         <button mat-button>Show</button>

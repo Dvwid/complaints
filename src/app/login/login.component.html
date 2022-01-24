@@ -1,12 +1,45 @@
-<h1 *ngIf="authenticationService.userData | async">Hello {{ (authenticationService.userData | async)?.email }}</h1>
+<div class="login-container">
+  <div class="login-news" >
+    <img src="assets/notifications.jpg">
+    <div class="login-news-text">
+      <h1>Notifications</h1>
+      <p>Now you will receive alerts for c
+        omplaints which are about to expire,
+        so you will not miss any complaints anymore.
+        The new functionality can be found in the
+        Complaints / Show notifications tab</p>
+      <a href="#">Read more</a>
+    </div>
+  </div>
+  <div class="login-formContainer">
+    <form *ngIf="!(authenticationService.isAuthenticated())" class="login-form" (submit)="signIn()">
+      <div *ngIf="errorMessage" class="login-formContainer-warning">
+        <mat-icon>warning</mat-icon>
+        <p>{{errorMessage}}</p>
+      </div>
+      <h1>Sign in</h1>
+      <mat-form-field appearance="fill" class="email-input">
+        <mat-label>Enter your email</mat-label>
+        <input matInput placeholder="pat@example.com" [formControl]="emailInput" required (input)="errorMessage = null">
+        <mat-error *ngIf="emailInput.invalid">{{getErrorMessage('email')}}</mat-error>
+      </mat-form-field>
 
-<div *ngIf="!(authenticationService.userData | async)">
-  <input type="text" [(ngModel)]="email" placeholder="email">
-  <input type="password" [(ngModel)]="password" placeholder="password">
+      <mat-form-field appearance="fill" class="password-input">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordInput" required (input)="errorMessage = null">
+        <mat-error *ngIf="passwordInput.invalid">{{getErrorMessage('password')}}</mat-error>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
 
-  <button (click)="signUp()">Sign Up</button>
+<!--      <button mat-raised-button color="primary" (click)="signUp()">Sign Up</button>-->
+      <button type="submit" mat-raised-button color="primary" >Sign In</button>
+      <a href="#">Forgot password?</a>
+    </form>
+  </div>
+  <!--<h1 *ngIf="authenticationService.userData | async">Hello {{ (authenticationService.userData | async)?.email }}</h1>-->
 
-  <button (click)="signIn()">Login</button>
+  <button (click)="signOut()" *ngIf="authenticationService.userData | async">Logout</button>
 </div>
 
-<button (click)="signOut()" *ngIf="authenticationService.userData | async">Logout</button>

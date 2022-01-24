@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable } from "rxjs";
+import { from, Observable } from "rxjs";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { map } from "rxjs/operators";
+import { Router } from "@angular/router";
+import MultiFactorUser = firebase.User.MultiFactorUser;
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private angularFireAuth: AngularFireAuth, private jwtHelper: JwtHelperService) {
+  constructor(private angularFireAuth: AngularFireAuth, private jwtHelper: JwtHelperService, private router: Router) {
     this.userData = angularFireAuth.authState;
   }
   userData:Observable<firebase.User | null>
@@ -30,19 +32,8 @@ export class AuthService {
       });
   }
 
-  signIn(email: string, password: string) {
-    this.angularFireAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((res:any) => {
-        this.userData.pipe(
-          map((data:any) => data.multiFactor.user)
-        ).subscribe(data => {
-          localStorage.setItem('Complaints-Auth-Token', data.accessToken)
-        })
-      })
-      .catch((error:any) => {
-        console.log('Something went wrong:',error.message);
-      });
+  signIn(email: string, password: string):Observable<any> {
+    return from(this.angularFireAuth.signInWithEmailAndPassword(email, password))
   }
 
   /* Sign out */
@@ -53,10 +44,7 @@ export class AuthService {
         localStorage.removeItem('Complaints-Auth-Token')
       })
   }
-
-
-
-
-
-
 }
+
+
+

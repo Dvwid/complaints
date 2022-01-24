@@ -4,6 +4,8 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 import { ELEMENT_DATA } from "../PeriodicElement";
 import { PeriodicElement } from "../PeriodicElement";
+import { fromEvent} from "rxjs";
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -12,21 +14,28 @@ import { PeriodicElement } from "../PeriodicElement";
   styleUrls: ['./data-table.component.scss']
 })
 export class DataTableComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = [];
-
-  dataSource = new MatTableDataSource<PeriodicElement>([]);
-  filteredValue:string = "";
-
+  constructor() { }
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  constructor() { }
+
+  displayedColumns: string[] = [];
+  mobileColumns: string[] = ['id', 'product.sku', 'client.name', 'done']
+  desktopColumns: string[] = ['id', 'product.name', 'product.sku', 'client.name','client.email','client.phone', 'date', 'done'];
+  isLoaded: boolean = true;
+  dataSource = new MatTableDataSource<PeriodicElement>([]);
+  filteredValue:string = "";
+  screenWidth$ = fromEvent(window, "resize")
+    .pipe(map((event:any) => event.target.screen.width))
 
   ngOnInit(): void {
-    if(window.innerWidth < 1024){
-      this.displayedColumns = ['id', 'product.sku', 'client.name', 'done'];
-    } else {
-      this.displayedColumns = ['id', 'product.name', 'product.sku', 'client.name','client.email','client.phone', 'date', 'done'];
-    };
+    window.innerWidth < 1024 ?
+      this.displayedColumns = this.mobileColumns :
+      this.displayedColumns = this.desktopColumns
+    this.screenWidth$.subscribe(value => {
+      value < 1024 ?
+        this.displayedColumns = this.mobileColumns :
+        this.displayedColumns = this.desktopColumns
+    })
     this.dataSource = new MatTableDataSource(ELEMENT_DATA)
   }
 
@@ -49,13 +58,11 @@ export class DataTableComponent implements AfterViewInit, OnInit {
   }
 
   applyFilter(){
-
-    // this.dataSource.filter = this.filteredValue.trim().toLowerCase()
     const filteredData = ELEMENT_DATA.filter(el => {
       if(el.product.name.toLowerCase().includes(this.filteredValue.trim().toLowerCase())) return el
-      if(el.product.sku.toLowerCase().includes(this.filteredValue.trim().toLowerCase())) return el
       if(el.client.name.toLowerCase().includes(this.filteredValue.trim().toLowerCase())) return el
-      if(el.client.email.toLowerCase().includes(this.filteredValue.trim().toLowerCase())) return el
+      // if(el.product.sku.toLowerCase().includes(this.filteredValue.trim().toLowerCase())) return el
+      // if(el.client.email.toLowerCase().includes(this.filteredValue.trim().toLowerCase())) return el
       if(this.filteredValue === "") return ELEMENT_DATA
       else return null
     })

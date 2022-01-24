@@ -8,12 +8,8 @@ import {GetApiService} from "../services/get-api.service";
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private getApi: GetApiService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.getApi.getComplaints().subscribe(
-      data => console.log(data)
-    )
-  }
+  ngOnInit(): void {}
 
 }
