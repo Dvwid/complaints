@@ -4,7 +4,6 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { Router } from "@angular/router";
-import MultiFactorUser = firebase.User.MultiFactorUser;
 
 
 @Injectable({
@@ -36,7 +35,6 @@ export class AuthService {
     return from(this.angularFireAuth.signInWithEmailAndPassword(email, password))
   }
 
-  /* Sign out */
   signOut() {
     this.angularFireAuth
       .signOut()
@@ -44,6 +42,14 @@ export class AuthService {
         localStorage.removeItem('Complaints-Auth-Token')
       })
   }
+  // Do poprawki
+  // core.js:6498 ERROR Error: Uncaught (in promise): FirebaseError: Firebase: The custom token format is incorrect. Please check the documentation. (auth/invalid-custom-token).
+  // FirebaseError: Firebase: The custom token format is incorrect. Please check the documentation. (auth/invalid-custom-token).
+  //
+  signInWithToken(){
+    this.userData.subscribe(data => console.log(data))
+  }
+
 }
 
 

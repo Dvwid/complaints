@@ -28,9 +28,9 @@
         <mat-label>Enter your password</mat-label>
         <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passwordInput" required (input)="errorMessage = null">
         <mat-error *ngIf="passwordInput.invalid">{{getErrorMessage('password')}}</mat-error>
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
+<!--        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">-->
+<!--          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>-->
+<!--        </button>-->
       </mat-form-field>
 
 <!--      <button mat-raised-button color="primary" (click)="signUp()">Sign Up</button>-->
@@ -40,6 +40,6 @@
   </div>
   <!--<h1 *ngIf="authenticationService.userData | async">Hello {{ (authenticationService.userData | async)?.email }}</h1>-->
 
-  <button (click)="signOut()" *ngIf="authenticationService.userData | async">Logout</button>
+  <button (click)="signOut()" *ngIf="authenticationService.isAuthenticated()">Logout</button>
 </div>
 

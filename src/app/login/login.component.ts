@@ -18,7 +18,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.emailInput.setValue('');
     this.passwordInput.setValue('');
   }
-
   errorMessage:string | null = null;
   mobile: boolean = window.innerWidth < 1024 ? true : false
   hide = true;

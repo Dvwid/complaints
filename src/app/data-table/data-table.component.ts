@@ -13,6 +13,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss']
 })
+
 export class DataTableComponent implements AfterViewInit, OnInit {
   constructor() { }
   @ViewChild(MatSort) sort: MatSort;

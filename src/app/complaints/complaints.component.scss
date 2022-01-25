@@ -28,11 +28,10 @@
   &-notifications {
     background-color: #424242;
     width: 0;
-    opacity: 0;
     transition: .5s;
+    z-index: 2;
     &.active {
       width: 20%;
-      opacity: 1;
     }
     overflow-y: auto;
     max-height: 85vh;
@@ -58,6 +57,7 @@
       flex-direction: column;
     }
     &-notifications {
+      position: fixed;
       height: 0;
       width: 100%;
       transition: .5s;
@@ -72,11 +72,12 @@
     }
     &-content {
       width: 100%;
-      display: block;
+      display:block;
       overflow-y: auto;
-      max-height: 85vh;
+      height: 100%;
       &.active {
         display: none;
+        height: 0%;
       }
     }
   }
