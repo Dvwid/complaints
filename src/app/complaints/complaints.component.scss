@@ -1,9 +1,11 @@
 .sub-navbar {
   display: flex;
+  position: fixed;
   align-items: center;
   width:100%;
   background-color: #d81b60;
   height: 5vh;
+  z-index: 3;
   & button{
     font-size: .8rem;
     color: rgba(255,255,255,0.8);
@@ -18,7 +20,9 @@
 }
 
 .complaints {
+
   &-container {
+    margin-top: 5vh;
     display: flex;
     background-color: #303030;
     color: white;
@@ -37,6 +41,10 @@
     max-height: 85vh;
     & .mat-card.mat-focus-indicator:not(:first-of-type) {
       margin-top: 5px;
+    }
+    &-empty {
+      height: 20vh;
+      width: 100%;
     }
 
   }
@@ -57,10 +65,10 @@
       flex-direction: column;
     }
     &-notifications {
-      position: fixed;
       height: 0;
       width: 100%;
       transition: .5s;
+      position: fixed;
       &.active {
         height: 100%;
         width: 100%;
