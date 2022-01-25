@@ -35,10 +35,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   signIn() {
     this.authenticationService.signIn(this.emailInput.value, this.passwordInput.value)
       .pipe(
-        map((data:any) => data.user.multiFactor.user)
-      ).subscribe(
+        map(data => data.user.multiFactor.user)
+      )
+      .subscribe(
         user => {
-          localStorage.setItem('Complaints-Auth-Token', user.accessToken)
+          localStorage.setItem('Complaints-User-JWT', JSON.stringify(user.accessToken))
+          localStorage.setItem('Complaints-User', JSON.stringify(user))
           this.router.navigate(['complaints']);
         },
         err => {

@@ -11,7 +11,8 @@ export class AppComponent implements OnInit{
   constructor(private auth: AuthService) {
   }
   ngOnInit() {
-    this.auth.signInWithToken()
+    console.log("Sign with Token")
+    this.auth.signInWithLocalStorage()
     // const token:string | null = localStorage.getItem('Complaints-Auth-Token')
     // if(token) this.auth.signInWithToken(token).subscribe(data => console.log(data))
   }

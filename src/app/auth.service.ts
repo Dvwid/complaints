@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { from, Observable } from "rxjs";
+import {from, Observable, of} from "rxjs";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
 import { JwtHelperService } from "@auth0/angular-jwt";
@@ -16,7 +16,7 @@ export class AuthService {
   userData:Observable<firebase.User | null>
 
   public isAuthenticated():any {
-    const token = localStorage.getItem('Complaints-Auth-Token')
+    const token = localStorage.getItem('Complaints-User-JWT')
     return !this.jwtHelper.isTokenExpired(token === null ? undefined : token)
   }
 
@@ -39,17 +39,16 @@ export class AuthService {
     this.angularFireAuth
       .signOut()
       .then((res:any) => {
-        localStorage.removeItem('Complaints-Auth-Token')
+        localStorage.removeItem('Complaints-User')
+        localStorage.removeItem('Complaints-User-JWT')
       })
   }
-  // Do poprawki
-  // core.js:6498 ERROR Error: Uncaught (in promise): FirebaseError: Firebase: The custom token format is incorrect. Please check the documentation. (auth/invalid-custom-token).
-  // FirebaseError: Firebase: The custom token format is incorrect. Please check the documentation. (auth/invalid-custom-token).
-  //
-  signInWithToken(){
-    this.userData.subscribe(data => console.log(data))
-  }
 
+  signInWithLocalStorage(){
+      const user = JSON.parse(localStorage.getItem('Complaints-User') as string)
+      this.userData = of(user)
+
+  }
 }
 
 
