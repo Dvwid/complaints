@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import {from, Observable, of} from "rxjs";
+import { from, Observable, of } from "rxjs";
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import firebase from "firebase/compat";
 import { JwtHelperService } from "@auth0/angular-jwt";
-import { Router } from "@angular/router";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private angularFireAuth: AngularFireAuth, private jwtHelper: JwtHelperService, private router: Router) {
+  constructor(private angularFireAuth: AngularFireAuth, private jwtHelper: JwtHelperService) {
     this.userData = angularFireAuth.authState;
   }
   userData:Observable<firebase.User | null>
@@ -38,7 +37,7 @@ export class AuthService {
   signOut() {
     this.angularFireAuth
       .signOut()
-      .then((res:any) => {
+      .then(() => {
         localStorage.removeItem('Complaints-User')
         localStorage.removeItem('Complaints-User-JWT')
       })

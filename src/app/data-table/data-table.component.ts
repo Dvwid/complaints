@@ -40,7 +40,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
     this.dataSource = new MatTableDataSource(ELEMENT_DATA)
   }
 
-  ngAfterViewInit(): void {
+  sortingFix(){
     this.dataSource.sortingDataAccessor = (item,property) => {
       switch(property){
         case 'id':return item.id;
@@ -54,6 +54,10 @@ export class DataTableComponent implements AfterViewInit, OnInit {
         default: return property;
       }
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.sortingFix()
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
   }
@@ -68,6 +72,7 @@ export class DataTableComponent implements AfterViewInit, OnInit {
       else return null
     })
     this.dataSource = new MatTableDataSource(filteredData);
+    this.sortingFix()
     this.dataSource.sort = this.sort
     this.dataSource.paginator = this.paginator
   }
